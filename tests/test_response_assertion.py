@@ -1,6 +1,6 @@
 from nose.tools import assert_raises
 from assert_tools.rest import assert_response_equal, UnsupportedResponseCode, \
-    UnsupportedObject
+    UnsupportedObject, assert_response_content_equal
 from assert_tools.rest.response_json import responses
 from util import MockHttpResponse
 
@@ -9,6 +9,13 @@ def test_assert_response_equal():
     mock_http_response = MockHttpResponse()
     data_dict = {'status': 200, 'body': {234: 'bcd'}}
     assert_response_equal(mock_http_response(**data_dict)[0], 'OK')
+
+
+def test_assert_response_content_equal():
+    mock_http_response = MockHttpResponse()
+    data_dict = {'status': 200, 'body': {234: 'bcd'}}
+    assert_response_content_equal(
+        mock_http_response(**data_dict)[1], data_dict['body'])
 
 
 def test_assert_response_equal_unsupported_response_code():

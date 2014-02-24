@@ -36,11 +36,15 @@ def as_http_response(response, content=None):
 
 def dict_as_http_response(data_dict):
     if isinstance(data_dict, dict):
-        if any(i in data_dict.keys() for i in ['status', 'body']):
+        expected_keys = ['status', 'body']
+        keys = data_dict.keys()
+        if any(i in keys for i in expected_keys):
             r = httplib2.Response({})
             r.status = data_dict.get('status', 200)
             body = data_dict.get('body', '')
             return r, body
+        raise UnsupportedObject("Missing keys {0} got {1}".format(
+            expected_keys, keys))
     raise UnsupportedObject("Unsupported Object expected {0} got {1}".format(
         dict, type(data_dict)))
 
@@ -82,9 +86,7 @@ def assert_response_bad_request(expected_response):
     assert_response_equal(expected_response, 'BAD_REQUEST')
 
 
-def assert_response_content_equal(expected_data_dict, actual_response):
-    _, expected_content = dict_as_http_response(
-        expected_data_dict)
-    _, actual_content = as_http_response(actual_response)
-    assert_equal(expected_content, actual_content)
+def assert_response_content_equal(
+        expected_data_dict, actual_response_content):
+    assert_equal(expected_data_dict, actual_response_content)
 
