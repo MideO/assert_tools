@@ -1,4 +1,4 @@
-A Python Unit/Functional test library.
+A Python Unit/Functional test library. [![Build Status](https://travis-ci.org/MideO/assert_tools.png)](https://travis-ci.org/MideO/assert_tools)
 
 Run tests
 =========
