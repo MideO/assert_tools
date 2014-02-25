@@ -1,4 +1,6 @@
+nose
 coverage==3.4
 pep8==1.2
 nosexcover
-
+unittest2
+requests
