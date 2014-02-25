@@ -1,6 +1,6 @@
 A Python Unit/Functional test library. 
 
-#Status
+#Build Status
 [![Build Status](https://travis-ci.org/MideO/assert_tools.png)](https://travis-ci.org/MideO/assert_tools)
 
 Run tests
