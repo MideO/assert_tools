@@ -2,7 +2,7 @@ language: python
 python:
   - "2.7"
 install:
-  - "pip install -r test-requirements.txt"
+  - "pip install -r test-requirements.txt -r requirements"
 script: cd tests; PYTHONPATH=.. nosetests --with-coverage --cover-tests --cover-package=assert_tool
 notifications:
   email:
