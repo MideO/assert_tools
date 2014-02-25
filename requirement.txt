@@ -1,5 +1,0 @@
-Sphinx
-nose
-mock
-unittest2
-httplib2
