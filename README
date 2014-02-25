@@ -2,5 +2,4 @@ A Python Unit/Functional test library.
 
 Run tests
 =========
-cd tests
-PYTHONPATH=.. nosetests --with-coverage --cover-tests --cover-package=assert_tool
+nosetests --with-coverage --cover-tests --cover-package=assert_tool
