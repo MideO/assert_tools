@@ -1,5 +1,0 @@
-A Python Unit/Functional test library. [![Build Status](https://travis-ci.org/MideO/assert_tools.png)](https://travis-ci.org/MideO/assert_tools)
-
-Run tests
-=========
-nosetests --with-coverage --cover-tests --cover-package=assert_tool
