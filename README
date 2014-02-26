@@ -1,5 +1,0 @@
-A Python Unit/Functional test library.
-
-Run tests
-=========
-nosetests --with-coverage --cover-tests --cover-package=assert_tool
