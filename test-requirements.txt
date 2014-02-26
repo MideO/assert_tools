@@ -1,6 +1,5 @@
-nose
 coverage==3.4
 pep8==1.2
+nose
 nosexcover
 unittest2
-requests

@@ -1,2 +1,4 @@
-Sphinx
+mock
 httplib2
+requests
+Sphinx
