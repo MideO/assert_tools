@@ -17,6 +17,14 @@ def _look_up(code, func_list):
 
 
 def test_assert_get_request_returns_status_codes():
+    """
+    Functional tests for
+    :py:func:`assert_tools.assert_get_request_returns_ok_status_code`
+    :py:func:`assert_tools.assert_get_request_returns_not_allowed_status_code`
+    :py:func:`assert_tools.assert_get_request_returns_forbidden_status_code`.
+    :py:func:`assert_tools.assert_get_request_returns_deny_status_code`.
+    :py:func:`assert_tools.assert_get_request_returns_bad_status_code`.
+    """
     assertions = _find_funcs('assert_get_request', rest)
     for k, v in responses.items():
         mock_http_response = MockHttpResponse()
@@ -27,6 +35,15 @@ def test_assert_get_request_returns_status_codes():
 
 
 def test_assert_post_request_returns_status_codes():
+    """
+    Functional tests for
+    :py:func:`assert_tools.assert_post_request_returns_ok_status_code`
+    :py:func:
+    `assert_tools.assert_post_request_returns_not_allowed_status_code`
+    :py:func:`assert_tools.assert_post_request_returns_forbidden_status_code`
+    :py:func:`assert_tools.assert_post_request_returns_deny_status_code`
+    :py:func:`assert_tools.assert_post_request_returns_bad_status_code`
+    """
     assertions = _find_funcs('assert_post_request', rest)
     for k, v in responses.items():
         mock_http_response = MockHttpResponse()
@@ -37,6 +54,14 @@ def test_assert_post_request_returns_status_codes():
 
 
 def test_assert_put_request_returns_status_codes():
+    """
+    Functional tests for
+    :py:func:`assert_tools.assert_put_request_returns_ok_status_code`
+    :py:func:`assert_tools.assert_put_request_returns_not_allowed_status_code`
+    :py:func:`assert_tools.assert_put_request_returns_forbidden_status_code`
+    :py:func:`assert_tools.assert_put_request_returns_deny_status_code`
+    :py:func:`assert_tools.assert_put_request_returns_bad_status_code`
+    """
     assertions = _find_funcs('assert_put_request', rest)
     for k, v in responses.items():
         mock_http_response = MockHttpResponse()
@@ -47,6 +72,15 @@ def test_assert_put_request_returns_status_codes():
 
 
 def test_assert_delete_request_returns_status_codes():
+    """
+    Functional tests for
+    :py:func:`assert_tools.assert_delete_request_returns_ok_status_code`
+    :py:func:
+    `assert_tools.assert_delete_request_returns_not_allowed_status_code`
+    :py:func:`assert_tools.assert_delete_request_returns_forbidden_status_code`
+    :py:func:`assert_tools.assert_delete_request_returns_deny_status_code`
+    :py:func:`assert_tools.assert_delete_request_returns_bad_status_code`
+    """
     assertions = _find_funcs('assert_delete_request', rest)
     for k, v in responses.items():
         mock_http_response = MockHttpResponse()
