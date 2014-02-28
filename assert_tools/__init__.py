@@ -11,6 +11,7 @@ def pep8(name):
         re.compile('([A-Z])'), lambda m: '_' + m.group().lower(), name
     )
 
+
 class NoOp(unittest2.TestCase):
     def no_op(self):
         pass

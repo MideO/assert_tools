@@ -1,4 +1,7 @@
 A Python Unit/Functional test library. 
+* All unittest2 assert* converted to pep8 style functions
+* Custom assertions for http status code
+* Custom assertions for RESTful API verbs (GET, POST, PUT DELETE)
 
 #Build Status
 [![Build Status](https://travis-ci.org/MideO/assert_tools.png)](https://travis-ci.org/MideO/assert_tools)
@@ -6,3 +9,62 @@ A Python Unit/Functional test library.
 Run tests
 =========
 nosetests --with-coverage --cover-tests --cover-package=assert_tool
+
+usage
+=====
+<code>
+from assert_tools import assert_equal
+def func():
+    return 2
+def test_func()
+    assert_equal(2, 2)
+<code>
+
+More interesting stuff with RESTful api..
+
+Small SUT: server.py
+<code>
+from bottle import route, run, response, request
+
+def do():
+    if request.GET.get('code'):
+        response.status = int(request.GET.get('code'))
+    else:
+        response.status = 200
+        return request.body
+
+@route('/goo', method='GET')
+def response_get(): return do()
+
+@route('/goo', method='DELETE' )
+def response_delete(): return do()
+
+@route('/goo', method='PUT')
+def response_put(): return do()
+
+@route('/goo', method='POST')
+def response_post(): return do()
+
+run(host='localhost', port=8080, debug=True)
+</code>
+
+Test Code: test_server.py
+<code>
+import httplib2
+from assert_tools.rest import (
+    assert_response_ok,
+    assert_delete_request_returns_success_status_code
+)
+from requests import get
+
+def test_get_server_base_url():
+    assert_response_ok(get('http://localhost:8080/goo'))
+    client = httplib2.Http()
+
+    assert_response_ok(client.request('http://localhost:8080/goo', 'GET'))
+
+def test_server_response_to_delete():
+    assert_delete_request_returns_success_status_code(
+        'http://localhost:8080/goo?code=201',
+        expected_content='a', request_kwargs={'body':'abc'})
+</code>
