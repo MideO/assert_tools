@@ -1,4 +1,4 @@
-from nose.tools import assert_equal, assert_raises
+from assert_tools import assert_equal, assert_raises
 from assert_tools.rest import (
     as_http_response,
     UnsupportedObject

@@ -1,4 +1,4 @@
-from nose.tools import assert_raises
+from assert_tools import assert_raises
 from assert_tools.rest import assert_response_equal, UnsupportedResponseCode, \
     UnsupportedObject, assert_response_content_equal
 from assert_tools.rest.response_json import responses
