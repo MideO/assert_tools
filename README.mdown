@@ -46,7 +46,7 @@ def response_put(): return do()
 def response_post(): return do()
 
 run(host='localhost', port=8080, debug=True)
-<pre></code>
+</code></pre>
 
 Test Code: test_server.py
 <pre><code>
@@ -67,4 +67,4 @@ def test_server_response_to_delete():
     assert_delete_request_returns_success_status_code(
         'http://localhost:8080/goo?code=201',
         expected_content='a', request_kwargs={'body':'abc'})
-<pre></code>
+</code></pre>
