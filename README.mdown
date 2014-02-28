@@ -12,18 +12,18 @@ nosetests --with-coverage --cover-tests --cover-package=assert_tool
 
 usage
 =====
-<code>
+<pre><code>
 from assert_tools import assert_equal
 def func():
     return 2
 def test_func()
     assert_equal(2, 2)
-<code>
+</code></pre>
 
 More interesting stuff with RESTful api..
 
 Small SUT: server.py
-<code>
+<pre><code>
 from bottle import route, run, response, request
 
 def do():
@@ -46,10 +46,10 @@ def response_put(): return do()
 def response_post(): return do()
 
 run(host='localhost', port=8080, debug=True)
-</code>
+<pre></code>
 
 Test Code: test_server.py
-<code>
+<pre><code>
 import httplib2
 from assert_tools.rest import (
     assert_response_ok,
@@ -67,4 +67,4 @@ def test_server_response_to_delete():
     assert_delete_request_returns_success_status_code(
         'http://localhost:8080/goo?code=201',
         expected_content='a', request_kwargs={'body':'abc'})
-</code>
+<pre></code>
