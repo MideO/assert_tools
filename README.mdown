@@ -22,7 +22,7 @@ def test_func()
 
 More interesting stuff with RESTful api..
 
-Small SUT: server.py
+Small bottle server to run as SUT: server.py
 <pre><code>
 from bottle import route, run, response, request
 
