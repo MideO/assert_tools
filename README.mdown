@@ -19,7 +19,7 @@ from assert_tools import assert_equal
 def func():
     return 2
 def test_func()
-    assert_equal(2, 2)
+    assert_equal(2, func())
 </code></pre>
 
 More interesting stuff with RESTful api..
