@@ -68,5 +68,5 @@ def test_get_server_base_url():
 def test_server_response_to_delete():
     assert_delete_request_returns_success_status_code(
         'http://localhost:8080/goo?code=201',
-        expected_content='a', request_kwargs={'body':'abc'})
+        expected_content='abc', request_kwargs={'body':'abc'})
 </code></pre>
