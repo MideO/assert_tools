@@ -1,4 +1,7 @@
-docs/_build
+docs/build
+Makefile
+_static
+_templates
 *.pyc
 *.swp
 .idea

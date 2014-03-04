@@ -1,3 +1,4 @@
+sphinx_rtd_theme
 unittest2
 httplib2
 requests

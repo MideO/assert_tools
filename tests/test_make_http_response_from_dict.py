@@ -8,10 +8,11 @@ from util import MockHttpResponse
 
 def test_dict_as_http_response():
     """
-    Tests :py:func:`assert_tools.dict_as_http_response`.
+    Tests :py:func:`assert_tools.rest.dict_as_http_response`.
 
-    Tests that :py:func:`assert_tools.dict_as_http_response`
-    returns `httplib Response` object when given a conforming python dict
+    Tests that :py:func:`assert_tools.rest.dict_as_http_response`
+    returns :py:class:requests.Response object when given a conforming python
+    dict
     """
     mock_http_response = MockHttpResponse()
     data_dict = {'status': 200, 'body': {234: 'bcd'}}
@@ -21,11 +22,11 @@ def test_dict_as_http_response():
 
 def test_dict_as_http_response_malformed_dict():
     """
-    Tests :py:func:`assert_tools.dict_as_http_response`.
+    Tests :py:func:`assert_tools.rest.dict_as_http_response`.
 
-    Tests that :py:func:`assert_tools.dict_as_http_response`
-    raises :py:class:`assert_tools.UnsupportedObject`
-    when give a non-conforming  dict
+    Tests that :py:func:`assert_tools.rest.dict_as_http_response`
+    raises :py:class:`assert_tools.rest.UnsupportedObject`
+    when give a non-conforming dict
     """
     data_dict = {'bar': 200, 'foo': {234: 'bcd'}}
     assert_raises(UnsupportedObject, dict_as_http_response, data_dict)
@@ -33,10 +34,10 @@ def test_dict_as_http_response_malformed_dict():
 
 def test_dict_as_http_response_not_dict():
     """
-    Tests :py:func:`assert_tools.dict_as_http_response`.
+    Tests :py:func:`assert_tools.rest.dict_as_http_response`.
 
-    Tests that :py:func:`assert_tools.dict_as_http_response`
-    raises :py:class:`assert_tools.UnsupportedObject`
+    Tests that :py:func:`assert_tools.rest.dict_as_http_response`
+    raises :py:class:`assert_tools.rest.UnsupportedObject`
     when give a non-dict structure
     """
 
