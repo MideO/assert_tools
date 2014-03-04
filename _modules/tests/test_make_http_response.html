@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tests.test_make_http_response &mdash; assert_tools 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'../../',
+        VERSION:'0.0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="assert_tools 0.0.1 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../index.html" class="icon icon-home"> assert_tools</a>
+        <form class="wy-form" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../assert_tools.html">assert_tools package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">assert_tools</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="../../index.html">Docs</a> &raquo;</li>
+  <li><a href="">tests.test_make_http_response</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <h1>Source code for tests.test_make_http_response</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">assert_tools</span> <span class="kn">import</span> <span class="n">assert_equal</span><span class="p">,</span> <span class="n">assert_raises</span>
+<span class="kn">from</span> <span class="nn">assert_tools.rest</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">as_http_response</span><span class="p">,</span>
+    <span class="n">UnsupportedObject</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">MockHttpResponse</span><span class="p">,</span> <span class="n">MockRequestsResponse</span>
+
+
+<div class="viewcode-block" id="test_as_http_response_support_for_httplib_response"><a class="viewcode-back" href="../../tests.html#tests.test_make_http_response.test_as_http_response_support_for_httplib_response">[docs]</a><span class="k">def</span> <span class="nf">test_as_http_response_support_for_httplib_response</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tests :py:func:`assert_tools.rest.as_http_response`.</span>
+
+<span class="sd">    Tests that :py:func:`assert_tools.rest.as_http_response`</span>
+<span class="sd">    returns :py:class:httplib.Response  object</span>
+<span class="sd">    when given :py:class:httplib.Response</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mock_http_response</span> <span class="o">=</span> <span class="n">MockHttpResponse</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">as_http_response</span><span class="p">(</span><span class="o">*</span><span class="n">mock_http_response</span><span class="p">())</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">mock_http_response</span><span class="p">(),</span> <span class="n">result</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="test_as_http_response_support_for_requests_response"><a class="viewcode-back" href="../../tests.html#tests.test_make_http_response.test_as_http_response_support_for_requests_response">[docs]</a><span class="k">def</span> <span class="nf">test_as_http_response_support_for_requests_response</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tests :py:func:`assert_tools.rest.as_http_response`.</span>
+
+<span class="sd">    Tests that :py:func:`assert_tools.rest.as_http_response`</span>
+<span class="sd">    returns :py:class:httplib.Response object</span>
+<span class="sd">    when given :py:class:requests.Response</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mock_requests_response</span> <span class="o">=</span> <span class="n">MockRequestsResponse</span><span class="p">()</span>
+    <span class="n">mock_http_response</span> <span class="o">=</span> <span class="n">MockHttpResponse</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">as_http_response</span><span class="p">(</span><span class="n">mock_requests_response</span><span class="p">())</span>
+    <span class="n">assert_equal</span><span class="p">(</span><span class="n">mock_http_response</span><span class="p">(),</span> <span class="n">result</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="test_as_http_response_invalid_object"><a class="viewcode-back" href="../../tests.html#tests.test_make_http_response.test_as_http_response_invalid_object">[docs]</a><span class="k">def</span> <span class="nf">test_as_http_response_invalid_object</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tests :py:func:`assert_tools.rest.as_http_response`.</span>
+
+<span class="sd">    Tests that :py:func:`assert_tools.rest.as_http_response`</span>
+<span class="sd">    raises :py:class `assert_tools.rest.UnsupportedObject`` when</span>
+<span class="sd">    given an unsupported value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_raises</span><span class="p">(</span><span class="n">UnsupportedObject</span><span class="p">,</span> <span class="n">as_http_response</span><span class="p">,</span> <span class="s">&#39;foo&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+          <footer>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, Mide Ojikutu.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

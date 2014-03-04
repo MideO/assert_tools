@@ -1,0 +1,218 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tests.test_functional &mdash; assert_tools 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'../../',
+        VERSION:'0.0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="assert_tools 0.0.1 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../index.html" class="icon icon-home"> assert_tools</a>
+        <form class="wy-form" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../assert_tools.html">assert_tools package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">assert_tools</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="../../index.html">Docs</a> &raquo;</li>
+  <li><a href="">tests.test_functional</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <h1>Source code for tests.test_functional</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">mock</span> <span class="kn">import</span> <span class="n">patch</span><span class="p">,</span> <span class="n">MagicMock</span>
+
+<span class="kn">from</span> <span class="nn">assert_tools</span> <span class="kn">import</span> <span class="n">rest</span>
+<span class="kn">from</span> <span class="nn">assert_tools.rest.response_json</span> <span class="kn">import</span> <span class="n">responses</span>
+<span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">MockHttpResponse</span>
+
+
+<span class="n">_find_funcs</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">function_matcher</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">module</span><span class="p">)</span> <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
+        <span class="n">function_matcher</span><span class="p">)]</span>
+
+
+<span class="k">def</span> <span class="nf">_look_up</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">func_list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">func_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">code</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">func</span><span class="o">.</span><span class="n">func_name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span>
+
+
+<div class="viewcode-block" id="test_assert_get_request_returns_status_codes"><a class="viewcode-back" href="../../tests.html#tests.test_functional.test_assert_get_request_returns_status_codes">[docs]</a><span class="k">def</span> <span class="nf">test_assert_get_request_returns_status_codes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Functional tests for</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_get_request_returns_ok_status_code`</span>
+<span class="sd">    :py:func:</span>
+<span class="sd">    `assert_tools.rest.assert_get_request_returns_not_allowed_status_code`</span>
+<span class="sd">    :py:func:</span>
+<span class="sd">    `assert_tools.rest.assert_get_request_returns_forbidden_status_code`.</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_get_request_returns_deny_status_code`.</span>
+<span class="sd">    :py:func:</span>
+<span class="sd">    `assert_tools.rest.assert_get_request_returns_bad_request_status_code`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assertions</span> <span class="o">=</span> <span class="n">_find_funcs</span><span class="p">(</span><span class="s">&#39;assert_get_request&#39;</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">responses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">mock_http_response</span> <span class="o">=</span> <span class="n">MockHttpResponse</span><span class="p">()</span>
+        <span class="n">assertion</span> <span class="o">=</span> <span class="n">_look_up</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">assertions</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;assert_tools.rest.make_api_call&#39;</span><span class="p">,</span>
+                   <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="n">mock_http_response</span><span class="p">(</span><span class="o">**</span><span class="n">v</span><span class="p">))):</span>
+            <span class="k">yield</span> <span class="n">assertion</span><span class="p">,</span> <span class="s">&#39;http://test.url&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s">&quot;body&quot;</span><span class="p">],</span> <span class="p">{}</span>
+
+</div>
+<div class="viewcode-block" id="test_assert_post_request_returns_status_codes"><a class="viewcode-back" href="../../tests.html#tests.test_functional.test_assert_post_request_returns_status_codes">[docs]</a><span class="k">def</span> <span class="nf">test_assert_post_request_returns_status_codes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Functional tests for</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_post_request_returns_ok_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_post_request_returns_not_allowed_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_post_request_returns_forbidden_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_post_request_returns_deny_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_post_request_returns_bad_request_status_code`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assertions</span> <span class="o">=</span> <span class="n">_find_funcs</span><span class="p">(</span><span class="s">&#39;assert_post_request&#39;</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">responses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">mock_http_response</span> <span class="o">=</span> <span class="n">MockHttpResponse</span><span class="p">()</span>
+        <span class="n">assertion</span> <span class="o">=</span> <span class="n">_look_up</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">assertions</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;assert_tools.rest.make_api_call&#39;</span><span class="p">,</span>
+                   <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="n">mock_http_response</span><span class="p">(</span><span class="o">**</span><span class="n">v</span><span class="p">))):</span>
+            <span class="k">yield</span> <span class="n">assertion</span><span class="p">,</span> <span class="s">&#39;http://test.url&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s">&quot;body&quot;</span><span class="p">],</span> <span class="p">{}</span>
+
+</div>
+<div class="viewcode-block" id="test_assert_put_request_returns_status_codes"><a class="viewcode-back" href="../../tests.html#tests.test_functional.test_assert_put_request_returns_status_codes">[docs]</a><span class="k">def</span> <span class="nf">test_assert_put_request_returns_status_codes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Functional tests for</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_ok_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_not_allowed_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_forbidden_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_deny_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_bad_request_status_code`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assertions</span> <span class="o">=</span> <span class="n">_find_funcs</span><span class="p">(</span><span class="s">&#39;assert_put_request&#39;</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">responses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">mock_http_response</span> <span class="o">=</span> <span class="n">MockHttpResponse</span><span class="p">()</span>
+        <span class="n">assertion</span> <span class="o">=</span> <span class="n">_look_up</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">assertions</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;assert_tools.rest.make_api_call&#39;</span><span class="p">,</span>
+                   <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="n">mock_http_response</span><span class="p">(</span><span class="o">**</span><span class="n">v</span><span class="p">))):</span>
+            <span class="k">yield</span> <span class="n">assertion</span><span class="p">,</span> <span class="s">&#39;http://test.url&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s">&quot;body&quot;</span><span class="p">],</span> <span class="p">{}</span>
+
+</div>
+<div class="viewcode-block" id="test_assert_delete_request_returns_status_codes"><a class="viewcode-back" href="../../tests.html#tests.test_functional.test_assert_delete_request_returns_status_codes">[docs]</a><span class="k">def</span> <span class="nf">test_assert_delete_request_returns_status_codes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Functional tests for</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_ok_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_not_allowed_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_forbidden_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_deny_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_bad_request_status_code`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assertions</span> <span class="o">=</span> <span class="n">_find_funcs</span><span class="p">(</span><span class="s">&#39;assert_delete_request&#39;</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">responses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">mock_http_response</span> <span class="o">=</span> <span class="n">MockHttpResponse</span><span class="p">()</span>
+        <span class="n">assertion</span> <span class="o">=</span> <span class="n">_look_up</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">assertions</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;assert_tools.rest.make_api_call&#39;</span><span class="p">,</span>
+                   <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="n">mock_http_response</span><span class="p">(</span><span class="o">**</span><span class="n">v</span><span class="p">))):</span>
+            <span class="k">yield</span> <span class="n">assertion</span><span class="p">,</span> <span class="s">&#39;http://test.url&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s">&quot;body&quot;</span><span class="p">],</span> <span class="p">{}</span></div>
+</pre></div>
+
+          <footer>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, Mide Ojikutu.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

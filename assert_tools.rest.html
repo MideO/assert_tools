@@ -1,0 +1,937 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>assert_tools.rest package &mdash; assert_tools 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="assert_tools 0.0.1 documentation" href="index.html"/>
+        <link rel="up" title="assert_tools package" href="assert_tools.html"/>
+        <link rel="next" title="tests package" href="tests.html"/>
+        <link rel="prev" title="assert_tools package" href="assert_tools.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> assert_tools</a>
+        <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="assert_tools.html">assert_tools package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">assert_tools</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">assert_tools.rest package</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <div class="section" id="assert-tools-rest-package">
+<h1>assert_tools.rest package<a class="headerlink" href="#assert-tools-rest-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-assert_tools.rest.response_json">
+<span id="assert-tools-rest-response-json-module"></span><h2>assert_tools.rest.response_json module<a class="headerlink" href="#module-assert_tools.rest.response_json" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-assert_tools.rest">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-assert_tools.rest" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="assert_tools.rest.UnsupportedObject">
+<em class="property">exception </em><tt class="descclassname">assert_tools.rest.</tt><tt class="descname">UnsupportedObject</tt><a class="reference internal" href="_modules/assert_tools/rest.html#UnsupportedObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.UnsupportedObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>The exception used by :py:method: <cite>as_http_response</cite> and
+dict_as_http_response.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="assert_tools.rest.UnsupportedResponseCode">
+<em class="property">exception </em><tt class="descclassname">assert_tools.rest.</tt><tt class="descname">UnsupportedResponseCode</tt><a class="reference internal" href="_modules/assert_tools/rest.html#UnsupportedResponseCode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.UnsupportedResponseCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>The exception used by :py:method: <cite>assert_response_equal</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.as_http_response">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">as_http_response</tt><big>(</big><em>response</em>, <em>content=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#as_http_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.as_http_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert request.Response object to :py:class:httplib2.Response</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>response</strong> &#8211; a :py:class:httplib2.Response object or
+:py:class:request.Response</li>
+<li><strong>content</strong> &#8211; content, required for :py:class:httplib2.Response</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>return: The return value is a tuple of (response, content), the first
+being and instance of the :py:class:httplib2.Response, the second being
+a string that contains the response entity body.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_delete_request_returns_bad_request_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_bad_request_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_bad_request_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_bad_request_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform PUT request to sever url</li>
+<li>Assert response is DENY</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_delete_request_returns_deny_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_deny_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_deny_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_deny_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert DELETE request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is DENY</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_delete_request_returns_forbidden_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_forbidden_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_forbidden_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_forbidden_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform DELETE request to sever url</li>
+<li>Assert response is FORBIDDEN</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_delete_request_returns_not_allowed_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_not_allowed_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_not_allowed_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_not_allowed_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert DELETE request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is NOT_ALLOWED</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_delete_request_returns_ok_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform DELETE request to sever url</li>
+<li>Assert response is OK</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_delete_request_returns_success_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_success_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_success_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_success_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform DELETE request to sever url</li>
+<li>Assert response is SUCCESS</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_get_request_returns_bad_request_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_get_request_returns_bad_request_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_get_request_returns_bad_request_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_get_request_returns_bad_request_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert get request returns okay status code
+* Perform GET request to sever url
+* Assert response is DENY
+* Assert response content is matches the expected content</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; REST api uri</li>
+<li><strong>expected_content</strong> &#8211; expected content from REST api</li>
+<li><strong>request_kwargs</strong> &#8211; kwargs for :py:class http.HTTP</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_get_request_returns_deny_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_get_request_returns_deny_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_get_request_returns_deny_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_get_request_returns_deny_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is DENY</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_get_request_returns_forbidden_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_get_request_returns_forbidden_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_get_request_returns_forbidden_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_get_request_returns_forbidden_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is FORBIDDEN</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_get_request_returns_not_allowed_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_get_request_returns_not_allowed_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_get_request_returns_not_allowed_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_get_request_returns_not_allowed_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is NOT_ALLOWED</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_get_request_returns_ok_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_get_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_get_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_get_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is OK</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_get_request_returns_success_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_get_request_returns_success_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_get_request_returns_success_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_get_request_returns_success_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is SUCCESS</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_post_request_returns_bad_request_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_bad_request_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_bad_request_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_bad_request_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform POST request to sever url</li>
+<li>Assert response is DENY</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_post_request_returns_deny_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_deny_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_deny_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_deny_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform POST request to sever url</li>
+<li>Assert response is DENY</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_post_request_returns_forbidden_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_forbidden_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_forbidden_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_forbidden_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform POST request to sever url</li>
+<li>Assert response is FORBIDDEN</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_post_request_returns_not_allowed_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_not_allowed_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_not_allowed_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_not_allowed_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform POST request to sever url</li>
+<li>Assert response is NOT_ALLOWED</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_post_request_returns_ok_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform POST request to sever url</li>
+<li>Assert response is POST</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_post_request_returns_success_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_success_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_success_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_success_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform POST request to sever url</li>
+<li>Assert response is SUCCESS</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_put_request_returns_bad_request_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_bad_request_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_bad_request_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_bad_request_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform PUT request to sever url</li>
+<li>Assert response is DENY</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_put_request_returns_deny_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_deny_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_deny_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_deny_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is DENY</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_put_request_returns_forbidden_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_forbidden_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_forbidden_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_forbidden_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform PUT request to sever url</li>
+<li>Assert response is FORBIDDEN</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_put_request_returns_not_allowed_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_not_allowed_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_not_allowed_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_not_allowed_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert PUT request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform GET request to sever url</li>
+<li>Assert response is NOT_ALLOWED</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_put_request_returns_ok_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform PUT request to sever url</li>
+<li>Assert response is OK</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_put_request_returns_success_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_success_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_success_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_success_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert get request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform PUT request to sever url</li>
+<li>Assert response is SUCCESS</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; </li>
+<li><strong>expected_content</strong> &#8211; </li>
+<li><strong>request_kwargs</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_bad_request">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_bad_request</tt><big>(</big><em>actual_response</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_bad_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_bad_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert response code is BAD_REQUEST.
+:param actual_response: actual response</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_content_equal">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_content_equal</tt><big>(</big><em>expected_data</em>, <em>actual_response_content</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_content_equal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_content_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert response content is equal.
+:param expected_data:expected content
+:param actual_response_content: actual content</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_deny">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_deny</tt><big>(</big><em>actual_response</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_deny"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_deny" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert response code is DENY.
+:param actual_response: actual response</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_equal">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_equal</tt><big>(</big><em>actual_response</em>, <em>expected_response</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_equal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert Response code is equal.
+:param actual_response: Actual Response
+:param expected_response: expected Response</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_forbidden">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_forbidden</tt><big>(</big><em>actual_response</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_forbidden"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_forbidden" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert response code is FORBIDDEN.
+:param actual_response: actual response</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_not_allowed">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_not_allowed</tt><big>(</big><em>actual_response</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_not_allowed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_not_allowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert response code is NOT_ALLOWED.
+:param actual_response: actual response</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_ok">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_ok</tt><big>(</big><em>actual_response</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_ok"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_ok" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert response code is OK.
+:param actual_response: actual response</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_success">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_success</tt><big>(</big><em>actual_response</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_success"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_success" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert response code is SUCCESS.
+:param actual_response: actual response</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.dict_as_http_response">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">dict_as_http_response</tt><big>(</big><em>data_dict</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#dict_as_http_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.dict_as_http_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert python dictionary to httplib2 &#8216;Response&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data_dict</strong> &#8211; dictionary to convert to httplib2 &#8216;Response&#8217; object
+expected_keys: status and body.</td>
+</tr>
+</tbody>
+</table>
+<p>return: The return value is a tuple of (response, content), the first
+being and instance of the httplib2 &#8216;Response&#8217; class, the second being
+a string that contains the response entity body.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.make_api_call">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">make_api_call</tt><big>(</big><em>url</em>, <em>method</em>, <em>kwargs</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#make_api_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.make_api_call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the call allowed  by httplib2 <tt class="docutils literal"><span class="pre">method</span></tt>
+:param url: Rest API url</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>method</strong> &#8211; ::py:class:httplib.HTTP request method: GET, POST, PUT,
+DELETE</li>
+<li><strong>kwargs</strong> &#8211; dictionary of supported :py:class:httplib2.Http() request
+body, headers, redirections, connection_type</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>return: The return value is a tuple of (response, content), the first</dt>
+<dd>being and instance of the httplib2 &#8216;Response&#8217; class, the second
+being a string that contains the response entity body.</dd>
+<dt>usage: extra_args = {</dt>
+<dd>&#8216;body&#8217;: {&#8216;abc&#8217;: 123},
+&#8216;headers&#8217;={},
+&#8216;redirections&#8217;:3,
+&#8216;connection_type&#8217;:&#8217;http&#8217;}
+make_api_call(&#8216;some_http_url&#8217;, &#8216;PUT&#8217;, extra_args)</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="tests.html" class="btn btn-neutral float-right" title="tests package"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="assert_tools.html" class="btn btn-neutral" title="assert_tools package"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, Mide Ojikutu.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>
