@@ -31,6 +31,8 @@ Small bottle server to run as SUT: server.py
 .. code-block:: python
 
     from bottle import route, run, response, request
+
+
     def do():
         if request.GET.get('code'):
             response.status = int(request.GET.get('code'))
@@ -60,6 +62,7 @@ Test Code: test_server.py
     import httplib2
     from assert_tools.rest import assert_response_ok, assert_delete_request_returns_success_status_code)
     from requests import get
+
 
     def test_get_server_base_url():
         assert_response_ok(get('http://localhost:8080/goo'))
