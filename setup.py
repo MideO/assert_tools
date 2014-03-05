@@ -18,7 +18,7 @@ setup(
         'Operating System :: Unix',
         'Operating System :: POSIX',
         'Intended Audience :: Developers',
-        'Topic :: Software Development :: Testing'
+        'Topic :: Software Development :: Testing',
         'Natural Language :: English',
     ],
     keywords=[
