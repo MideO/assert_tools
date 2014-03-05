@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Documentation for assert_tools
-========================================
+==============================
 A Python Unit/Functional test library, with custom assertions for RESTful API
 verbs (GET, POST, PUT DELETE), all unittest2 assert* converted to pep8 style
 functions and custom assertions for http status code
@@ -20,6 +20,8 @@ usage
 .. code-block:: python
 
     from assert_tools import assert_equal
+
+
     def func():
         return 2
     def test_func():
