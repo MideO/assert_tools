@@ -12,7 +12,7 @@ setup(
     tests_require=["nose", 'mock', 'coverage', 'nosexcover'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 2 :: Only',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Unix',
