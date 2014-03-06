@@ -19,8 +19,8 @@ class NoOp(unittest2.TestCase):
 
 no_op = NoOp('no_op')
 
-_asserts = [func for func in dir(no_op) if
-           func.startswith('assert') and not '_' in func]
+_asserts = [_ for _ in dir(no_op) if
+           _.startswith('assert') and not '_' in _]
 for _attrib in _asserts:
     vars()[pep8(_attrib)] = getattr(no_op, _attrib)
     del _attrib
@@ -31,5 +31,5 @@ del pep8
 del _asserts
 del unittest2
 del re
-
+del _
 
