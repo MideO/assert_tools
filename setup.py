@@ -1,13 +1,13 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='assert_tools',
     url='http://mideo.github.io/assert_tools/',
     description='A Python Unit/Functional test library.',
-    version='0.0.1',
+    version='0.0.3',
     author='Mide Ojikutu',
     author_email='mide.ojikutu@gmail.com',
-    packages=['assert_tools'],
+    packages=find_packages(),
     install_requires=['unittest2', 'requests', 'httplib2'],
     tests_require=["nose", 'mock', 'coverage', 'nosexcover'],
     classifiers=[

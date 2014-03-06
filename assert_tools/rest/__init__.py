@@ -605,3 +605,7 @@ def assert_delete_request_returns_bad_request_status_code(
     assert_response_bad_request(response)
     if expected_content:
         assert_response_content_equal(expected_content, actual_content)
+
+
+
+del response_json
