@@ -3,7 +3,7 @@ assert_tools
 A Python Unit/Functional test library.
 * All unittest2 assert* converted to pep8 style functions
 * Custom assertions for http status code
-* Custom assertions for RESTful API verbs (GET, POST, PUT DELETE)
+* Custom assertions for RESTful API verbs (GET, POST, PUT,DELETE)
 
 #Build Status
 [![Build Status](https://travis-ci.org/MideO/assert_tools.png)](https://travis-ci.org/MideO/assert_tools)
@@ -11,6 +11,10 @@ A Python Unit/Functional test library.
 Docs
 ====
 http://mideo.github.io/assert_tools/
+
+Download
+========
+https://pypi.python.org/pypi/assert_tools/0.0.1
 
 Run tests
 =========
