@@ -69,7 +69,7 @@
         
         
             <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../assert_tools.html">assert_tools package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tests.html">tests package</a></li>
 </ul>
@@ -124,13 +124,11 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Functional tests for</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_get_request_returns_ok_status_code`</span>
-<span class="sd">    :py:func:</span>
-<span class="sd">    `assert_tools.rest.assert_get_request_returns_not_allowed_status_code`</span>
-<span class="sd">    :py:func:</span>
-<span class="sd">    `assert_tools.rest.assert_get_request_returns_forbidden_status_code`.</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_get_request_returns_success_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_get_request_returns_not_allowed_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_get_request_returns_forbidden_status_code`.</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_get_request_returns_deny_status_code`.</span>
-<span class="sd">    :py:func:</span>
-<span class="sd">    `assert_tools.rest.assert_get_request_returns_bad_request_status_code`.</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_get_request_returns_bad_request_status_code`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">assertions</span> <span class="o">=</span> <span class="n">_find_funcs</span><span class="p">(</span><span class="s">&#39;assert_get_request&#39;</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">responses</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -163,6 +161,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Functional tests for</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_ok_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_success_status_code`</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_not_allowed_status_code`</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_forbidden_status_code`</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_put_request_returns_deny_status_code`</span>
@@ -181,6 +180,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Functional tests for</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_ok_status_code`</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_success_status_code`</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_not_allowed_status_code`</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_forbidden_status_code`</span>
 <span class="sd">    :py:func:`assert_tools.rest.assert_delete_request_returns_deny_status_code`</span>
@@ -192,7 +192,33 @@
         <span class="n">assertion</span> <span class="o">=</span> <span class="n">_look_up</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">assertions</span><span class="p">)</span>
         <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">&#39;assert_tools.rest.make_api_call&#39;</span><span class="p">,</span>
                    <span class="n">MagicMock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="n">mock_http_response</span><span class="p">(</span><span class="o">**</span><span class="n">v</span><span class="p">))):</span>
-            <span class="k">yield</span> <span class="n">assertion</span><span class="p">,</span> <span class="s">&#39;http://test.url&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s">&quot;body&quot;</span><span class="p">],</span> <span class="p">{}</span></div>
+            <span class="k">yield</span> <span class="n">assertion</span><span class="p">,</span> <span class="s">&#39;http://test.url&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s">&quot;body&quot;</span><span class="p">],</span> <span class="p">{}</span>
+
+</div>
+<span class="nd">@patch</span><span class="p">(</span><span class="s">&#39;assert_tools.rest.make_api_call&#39;</span><span class="p">,</span>
+       <span class="n">MagicMock</span><span class="p">(</span>
+           <span class="n">return_value</span><span class="o">=</span><span class="n">MockHttpResponse</span><span class="p">()(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="p">{</span><span class="mi">123</span><span class="p">:</span> <span class="s">&#39;abc&#39;</span><span class="p">})</span>
+       <span class="p">))</span>
+<div class="viewcode-block" id="test_assert_options_request_returns_ok_status_codes"><a class="viewcode-back" href="../../tests.html#tests.test_functional.test_assert_options_request_returns_ok_status_codes">[docs]</a><span class="k">def</span> <span class="nf">test_assert_options_request_returns_ok_status_codes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Functional tests for</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_options_request_returns_ok_status_code`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rest</span><span class="o">.</span><span class="n">assert_options_request_returns_ok_status_code</span><span class="p">(</span>
+        <span class="s">&#39;http://test.url&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;status&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">},</span> <span class="p">{</span><span class="mi">123</span><span class="p">:</span> <span class="s">&#39;abc&#39;</span><span class="p">},</span> <span class="p">{})</span>
+
+</div>
+<span class="nd">@patch</span><span class="p">(</span><span class="s">&#39;assert_tools.rest.make_api_call&#39;</span><span class="p">,</span>
+       <span class="n">MagicMock</span><span class="p">(</span>
+           <span class="n">return_value</span><span class="o">=</span><span class="n">MockHttpResponse</span><span class="p">()(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="p">{})</span>
+       <span class="p">))</span>
+<div class="viewcode-block" id="test_assert_head_request_returns_ok_status_codes"><a class="viewcode-back" href="../../tests.html#tests.test_functional.test_assert_head_request_returns_ok_status_codes">[docs]</a><span class="k">def</span> <span class="nf">test_assert_head_request_returns_ok_status_codes</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Functional tests for</span>
+<span class="sd">    :py:func:`assert_tools.rest.assert_head_request_returns_ok_status_code`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rest</span><span class="o">.</span><span class="n">assert_head_request_returns_ok_status_code</span><span class="p">(</span>
+        <span class="s">&#39;http://test.url&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;status&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">},</span> <span class="p">{})</span></div>
 </pre></div>
 
           <footer>

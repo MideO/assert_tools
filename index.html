@@ -44,7 +44,7 @@
 
   
     <link rel="top" title="assert_tools 0.0.1 documentation" href="#"/>
-        <link rel="next" title="Modules" href="modules.html"/> 
+        <link rel="next" title="modules" href="modules.html"/> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -69,7 +69,7 @@
         
         
             <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="assert_tools.html">assert_tools package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
 </ul>
@@ -104,11 +104,15 @@
   <div class="section" id="documentation-for-assert-tools">
 <h1>Documentation for assert_tools<a class="headerlink" href="#documentation-for-assert-tools" title="Permalink to this headline">¶</a></h1>
 <p>A Python Unit/Functional test library, with custom assertions for RESTful API
-verbs (GET, POST, PUT DELETE), all unittest2 assert* converted to pep8 style
+verbs (GET, POST, PUT DELETE) and HTTP methods (OPTIONS and HEAD), all unittest2 assert* converted to pep8 style
 functions and custom assertions for http status code</p>
+</div>
+<div class="section" id="whats-new">
+<h1>whats new<a class="headerlink" href="#whats-new" title="Permalink to this headline">¶</a></h1>
+<p>Support for testing reponse header for  HTTP methods (OPTIONS and HEAD)</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="assert_tools.html">assert_tools package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
 </ul>
@@ -131,13 +135,18 @@ functions and custom assertions for http status code</p>
 Small bottle server to run as SUT: server.py</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bottle</span> <span class="kn">import</span> <span class="n">route</span><span class="p">,</span> <span class="n">run</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">request</span>
 
-
 <span class="k">def</span> <span class="nf">do</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;code&#39;</span><span class="p">):</span>
         <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;code&#39;</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">200</span>
     <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">body</span>
+
+
+<span class="k">def</span> <span class="nf">opts</span><span class="p">():</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;allow&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;GET,HEAD,POST,PUT,OPTIONS,DELETE&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;allow&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="s">&#39;HEAD&#39;</span><span class="p">,</span> <span class="s">&#39;POST&#39;</span><span class="p">,</span> <span class="s">&#39;PUT&#39;</span><span class="p">,</span> <span class="s">&#39;OPTIONS&#39;</span><span class="p">,</span> <span class="s">&#39;DELETE&#39;</span><span class="p">]}</span>
 
 <span class="nd">@route</span><span class="p">(</span><span class="s">&#39;/goo&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;GET&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">response_get</span><span class="p">():</span> <span class="k">return</span> <span class="n">do</span><span class="p">()</span>
@@ -150,6 +159,12 @@ Small bottle server to run as SUT: server.py</p>
 
 <span class="nd">@route</span><span class="p">(</span><span class="s">&#39;/goo&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;POST&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">response_post</span><span class="p">():</span> <span class="k">return</span> <span class="n">do</span><span class="p">()</span>
+
+<span class="nd">@route</span><span class="p">(</span><span class="s">&#39;/goo&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;OPTIONS&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">response_options</span><span class="p">():</span> <span class="k">return</span> <span class="n">opts</span><span class="p">()</span>
+
+<span class="nd">@route</span><span class="p">(</span><span class="s">&#39;/goo&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;HEAD&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">response_head</span><span class="p">():</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">200</span>
 
 <span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
@@ -186,7 +201,7 @@ Small bottle server to run as SUT: server.py</p>
   
     <div class="rst-footer-buttons">
       
-        <a href="modules.html" class="btn btn-neutral float-right" title="Modules"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="modules"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>

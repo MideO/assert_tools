@@ -71,7 +71,7 @@
         
         
             <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">modules</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="assert_tools.html">assert_tools package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
 </ul>
@@ -154,9 +154,9 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_delete_request_returns_bad_request_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_bad_request_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_bad_request_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_bad_request_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert delete request returns okay status code</dt>
 <dd><ul class="first last simple">
-<li>Perform PUT request to sever url</li>
+<li>Perform DELETE request to sever url</li>
 <li>Assert response is DENY</li>
 <li>Assert response content is matches the expected content</li>
 </ul>
@@ -167,9 +167,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -181,9 +183,9 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_delete_request_returns_deny_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_deny_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_deny_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_deny_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert DELETE request returns okay status code</dt>
+<dt>Assert delete request returns okay status code</dt>
 <dd><ul class="first last simple">
-<li>Perform GET request to sever url</li>
+<li>Perform DELETE request to sever url</li>
 <li>Assert response is DENY</li>
 <li>Assert response content is matches the expected content</li>
 </ul>
@@ -194,9 +196,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -208,7 +212,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_delete_request_returns_forbidden_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_forbidden_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_forbidden_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_forbidden_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert delete request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform DELETE request to sever url</li>
 <li>Assert response is FORBIDDEN</li>
@@ -221,9 +225,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -235,7 +241,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_delete_request_returns_not_allowed_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_not_allowed_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_not_allowed_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_not_allowed_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert DELETE request returns okay status code</dt>
+<dt>Assert delete request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform GET request to sever url</li>
 <li>Assert response is NOT_ALLOWED</li>
@@ -248,9 +254,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -262,7 +270,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_delete_request_returns_ok_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert delete request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform DELETE request to sever url</li>
 <li>Assert response is OK</li>
@@ -275,9 +283,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -289,7 +299,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_delete_request_returns_success_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_delete_request_returns_success_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_delete_request_returns_success_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_delete_request_returns_success_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert delete request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform DELETE request to sever url</li>
 <li>Assert response is SUCCESS</li>
@@ -302,9 +312,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -324,9 +336,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; REST api uri</li>
-<li><strong>expected_content</strong> &#8211; expected content from REST api</li>
-<li><strong>request_kwargs</strong> &#8211; kwargs for :py:class http.HTTP</li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -351,9 +365,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -378,9 +394,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -405,9 +423,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -459,9 +479,71 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_head_request_returns_ok_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_head_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content_header_dict=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_head_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_head_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert options request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform HEAD request to sever url</li>
+<li>Assert response is OK</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content_header_dict</strong> &#8211; python dict containing expected
+key value pairing in response returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_options_request_returns_ok_status_code">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_options_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content_header_dict=None</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_options_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_options_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Assert options request returns okay status code</dt>
+<dd><ul class="first last simple">
+<li>Perform OPTIONS request to sever url</li>
+<li>Assert response is OK</li>
+<li>Assert response content is matches the expected content</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>expected_content_header_dict</strong> &#8211; python dict containing expected
+key value pairing in response returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -486,9 +568,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -500,7 +584,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_post_request_returns_deny_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_deny_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_deny_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_deny_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert post request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform POST request to sever url</li>
 <li>Assert response is DENY</li>
@@ -513,9 +597,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -527,7 +613,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_post_request_returns_forbidden_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_forbidden_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_forbidden_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_forbidden_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert post request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform POST request to sever url</li>
 <li>Assert response is FORBIDDEN</li>
@@ -540,9 +626,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -554,7 +642,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_post_request_returns_not_allowed_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_not_allowed_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_not_allowed_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_not_allowed_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert post request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform POST request to sever url</li>
 <li>Assert response is NOT_ALLOWED</li>
@@ -567,9 +655,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -581,7 +671,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_post_request_returns_ok_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert post request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform POST request to sever url</li>
 <li>Assert response is POST</li>
@@ -594,9 +684,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -608,7 +700,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_post_request_returns_success_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_post_request_returns_success_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_post_request_returns_success_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_post_request_returns_success_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert post request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform POST request to sever url</li>
 <li>Assert response is SUCCESS</li>
@@ -621,9 +713,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -635,7 +729,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_put_request_returns_bad_request_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_bad_request_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_bad_request_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_bad_request_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert put request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform PUT request to sever url</li>
 <li>Assert response is DENY</li>
@@ -648,9 +742,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -662,9 +758,9 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_put_request_returns_deny_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_deny_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_deny_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_deny_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert put request returns okay status code</dt>
 <dd><ul class="first last simple">
-<li>Perform GET request to sever url</li>
+<li>Perform PUT request to sever url</li>
 <li>Assert response is DENY</li>
 <li>Assert response content is matches the expected content</li>
 </ul>
@@ -675,9 +771,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -689,7 +787,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_put_request_returns_forbidden_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_forbidden_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_forbidden_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_forbidden_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert put request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform PUT request to sever url</li>
 <li>Assert response is FORBIDDEN</li>
@@ -702,9 +800,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -716,9 +816,9 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_put_request_returns_not_allowed_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_not_allowed_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_not_allowed_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_not_allowed_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert PUT request returns okay status code</dt>
+<dt>Assert put request returns okay status code</dt>
 <dd><ul class="first last simple">
-<li>Perform GET request to sever url</li>
+<li>Perform PUT request to sever url</li>
 <li>Assert response is NOT_ALLOWED</li>
 <li>Assert response content is matches the expected content</li>
 </ul>
@@ -729,9 +829,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -743,7 +845,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_put_request_returns_ok_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_ok_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_ok_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_ok_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert put request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform PUT request to sever url</li>
 <li>Assert response is OK</li>
@@ -756,9 +858,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -770,7 +874,7 @@ a string that contains the response entity body.</p>
 <dt id="assert_tools.rest.assert_put_request_returns_success_status_code">
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_put_request_returns_success_status_code</tt><big>(</big><em>server_url</em>, <em>expected_content=None</em>, <em>request_kwargs=None</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_put_request_returns_success_status_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_put_request_returns_success_status_code" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
-<dt>Assert get request returns okay status code</dt>
+<dt>Assert put request returns okay status code</dt>
 <dd><ul class="first last simple">
 <li>Perform PUT request to sever url</li>
 <li>Assert response is SUCCESS</li>
@@ -783,9 +887,11 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>server_url</strong> &#8211; </li>
-<li><strong>expected_content</strong> &#8211; </li>
-<li><strong>request_kwargs</strong> &#8211; </li>
+<li><strong>server_url</strong> &#8211; server url</li>
+<li><strong>expected_content</strong> &#8211; expected content in content
+returned :py:class:httplib.HTTP request</li>
+<li><strong>request_kwargs</strong> &#8211; keyword arguments for :py:class:httplib.HTTP
+request</li>
 </ul>
 </td>
 </tr>
@@ -828,6 +934,14 @@ a string that contains the response entity body.</p>
 <tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_forbidden</tt><big>(</big><em>actual_response</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_forbidden"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_forbidden" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assert response code is FORBIDDEN.
 :param actual_response: actual response</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="assert_tools.rest.assert_response_headers_contains">
+<tt class="descclassname">assert_tools.rest.</tt><tt class="descname">assert_response_headers_contains</tt><big>(</big><em>actual_response</em>, <em>expected_content_header_dict</em><big>)</big><a class="reference internal" href="_modules/assert_tools/rest.html#assert_response_headers_contains"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#assert_tools.rest.assert_response_headers_contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert Response header contains a items in expected_header_content.
+:param actual_response: Actual Response
+:param expected_content_header_dict: expected content in response header</p>
 </dd></dl>
 
 <dl class="function">
@@ -879,7 +993,7 @@ a string that contains the response entity body.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>method</strong> &#8211; ::py:class:httplib.HTTP request method: GET, POST, PUT,
+<li><strong>method</strong> &#8211; :py:class:httplib.HTTP request method: GET, POST, PUT,
 DELETE</li>
 <li><strong>kwargs</strong> &#8211; dictionary of supported :py:class:httplib2.Http() request
 body, headers, redirections, connection_type</li>

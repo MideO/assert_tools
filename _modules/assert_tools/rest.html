@@ -69,7 +69,7 @@
         
         
             <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../assert_tools.html">assert_tools package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tests.html">tests package</a></li>
 </ul>
@@ -135,7 +135,7 @@
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">Response</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">response</span><span class="p">,</span> <span class="n">content</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">requests</span><span class="o">.</span><span class="n">Response</span><span class="p">):</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">Response</span><span class="p">({})</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">Response</span><span class="p">({</span><span class="s">&#39;status&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">})</span>
         <span class="n">r</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
         <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
 
@@ -159,7 +159,7 @@
         <span class="n">expected_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;status&#39;</span><span class="p">,</span> <span class="s">&#39;body&#39;</span><span class="p">]</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">i</span> <span class="ow">in</span> <span class="n">keys</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">expected_keys</span><span class="p">):</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">Response</span><span class="p">({})</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">Response</span><span class="p">({</span><span class="s">&#39;status&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">})</span>
             <span class="n">r</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;status&#39;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
             <span class="n">body</span> <span class="o">=</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">body</span>
@@ -184,6 +184,29 @@
     <span class="n">expected_response</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">dict_as_http_response</span><span class="p">(</span><span class="n">expected_data_dict</span><span class="p">)</span>
     <span class="n">actual_response</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">as_http_response</span><span class="p">(</span><span class="n">actual_response</span><span class="p">)</span>
     <span class="n">assert_equal</span><span class="p">(</span><span class="n">expected_response</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">actual_response</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="assert_response_headers_contains"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_response_headers_contains">[docs]</a><span class="k">def</span> <span class="nf">assert_response_headers_contains</span><span class="p">(</span>
+        <span class="n">actual_response</span><span class="p">,</span> <span class="n">expected_content_header_dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Assert Response header contains a items in expected_header_content.</span>
+<span class="sd">    :param actual_response: Actual Response</span>
+<span class="sd">    :param expected_content_header_dict: expected content in response header</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expected_content_header_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">UnsupportedObject</span><span class="p">(</span>
+            <span class="s">&#39;Python dictionary expected for expected_header_content &#39;</span><span class="p">)</span>
+    <span class="n">actual_response</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">as_http_response</span><span class="p">(</span><span class="n">actual_response</span><span class="p">)</span>
+    <span class="n">assert_equal</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">expected_content_header_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span>
+         <span class="n">i</span> <span class="ow">in</span> <span class="n">actual_response</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span>
+        <span class="n">expected_content_header_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+        <span class="s">&quot;Items not found in response header&quot;</span>
+    <span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">expected_content_header_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">assert_equal</span><span class="p">(</span>
+            <span class="n">expected_content_header_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">actual_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+            <span class="s">&quot;Unexpected header item value returned&quot;</span>
+        <span class="p">)</span>
 
 </div>
 <div class="viewcode-block" id="assert_response_content_equal"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_response_content_equal">[docs]</a><span class="k">def</span> <span class="nf">assert_response_content_equal</span><span class="p">(</span>
@@ -242,7 +265,7 @@
 <span class="sd">    Perform the call allowed  by httplib2 ``method``</span>
 <span class="sd">    :param url: Rest API url</span>
 
-<span class="sd">    :param method: ::py:class:httplib.HTTP request method: GET, POST, PUT,</span>
+<span class="sd">    :param method: :py:class:httplib.HTTP request method: GET, POST, PUT,</span>
 <span class="sd">        DELETE</span>
 <span class="sd">    :param kwargs: dictionary of supported :py:class:httplib2.Http() request</span>
 <span class="sd">         body, headers, redirections, connection_type</span>
@@ -288,9 +311,11 @@
 <span class="sd">     * Assert response is SUCCESS</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="p">)</span>
     <span class="n">assert_response_success</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -306,9 +331,11 @@
 <span class="sd">     * Assert response is NOT_ALLOWED</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="p">)</span>
     <span class="n">assert_response_not_allowed</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -324,9 +351,11 @@
 <span class="sd">     * Assert response is FORBIDDEN</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="p">)</span>
     <span class="n">assert_response_forbidden</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -342,9 +371,11 @@
 <span class="sd">     * Assert response is DENY</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="p">)</span>
     <span class="n">assert_response_deny</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -360,9 +391,11 @@
 <span class="sd">    * Assert response is DENY</span>
 <span class="sd">    * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url: REST api uri</span>
-<span class="sd">    :param expected_content: expected content from REST api</span>
-<span class="sd">    :param request_kwargs: kwargs for :py:class http.HTTP</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="p">)</span>
     <span class="n">assert_response_bad_request</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -373,14 +406,16 @@
 <div class="viewcode-block" id="assert_post_request_returns_ok_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_post_request_returns_ok_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_post_request_returns_ok_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert post request returns okay status code</span>
 <span class="sd">     * Perform POST request to sever url</span>
 <span class="sd">     * Assert response is POST</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;POST&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -392,14 +427,16 @@
 <div class="viewcode-block" id="assert_post_request_returns_success_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_post_request_returns_success_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_post_request_returns_success_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert post request returns okay status code</span>
 <span class="sd">     * Perform POST request to sever url</span>
 <span class="sd">     * Assert response is SUCCESS</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;POST&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -411,14 +448,16 @@
 <div class="viewcode-block" id="assert_post_request_returns_not_allowed_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_post_request_returns_not_allowed_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_post_request_returns_not_allowed_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert post request returns okay status code</span>
 <span class="sd">     * Perform POST request to sever url</span>
 <span class="sd">     * Assert response is NOT_ALLOWED</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;POST&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -430,14 +469,16 @@
 <div class="viewcode-block" id="assert_post_request_returns_forbidden_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_post_request_returns_forbidden_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_post_request_returns_forbidden_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert post request returns okay status code</span>
 <span class="sd">     * Perform POST request to sever url</span>
 <span class="sd">     * Assert response is FORBIDDEN</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;POST&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -449,14 +490,16 @@
 <div class="viewcode-block" id="assert_post_request_returns_deny_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_post_request_returns_deny_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_post_request_returns_deny_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert post request returns okay status code</span>
 <span class="sd">     * Perform POST request to sever url</span>
 <span class="sd">     * Assert response is DENY</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;GET&#39;</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="p">)</span>
     <span class="n">assert_response_deny</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
@@ -472,9 +515,11 @@
 <span class="sd">     * Assert response is DENY</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;POST&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -486,14 +531,16 @@
 <div class="viewcode-block" id="assert_put_request_returns_ok_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_put_request_returns_ok_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_put_request_returns_ok_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert put request returns okay status code</span>
 <span class="sd">     * Perform PUT request to sever url</span>
 <span class="sd">     * Assert response is OK</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;PUT&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -505,14 +552,16 @@
 <div class="viewcode-block" id="assert_put_request_returns_success_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_put_request_returns_success_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_put_request_returns_success_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert put request returns okay status code</span>
 <span class="sd">     * Perform PUT request to sever url</span>
 <span class="sd">     * Assert response is SUCCESS</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;PUT&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -524,14 +573,16 @@
 <div class="viewcode-block" id="assert_put_request_returns_not_allowed_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_put_request_returns_not_allowed_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_put_request_returns_not_allowed_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert PUT request returns okay status code</span>
-<span class="sd">     * Perform GET request to sever url</span>
+<span class="sd">    Assert put request returns okay status code</span>
+<span class="sd">     * Perform PUT request to sever url</span>
 <span class="sd">     * Assert response is NOT_ALLOWED</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;PUT&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -543,14 +594,16 @@
 <div class="viewcode-block" id="assert_put_request_returns_forbidden_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_put_request_returns_forbidden_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_put_request_returns_forbidden_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert put request returns okay status code</span>
 <span class="sd">     * Perform PUT request to sever url</span>
 <span class="sd">     * Assert response is FORBIDDEN</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;PUT&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -562,14 +615,16 @@
 <div class="viewcode-block" id="assert_put_request_returns_deny_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_put_request_returns_deny_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_put_request_returns_deny_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
-<span class="sd">     * Perform GET request to sever url</span>
+<span class="sd">    Assert put request returns okay status code</span>
+<span class="sd">     * Perform PUT request to sever url</span>
 <span class="sd">     * Assert response is DENY</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;PUT&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -581,14 +636,16 @@
 <div class="viewcode-block" id="assert_put_request_returns_bad_request_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_put_request_returns_bad_request_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_put_request_returns_bad_request_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert put request returns okay status code</span>
 <span class="sd">     * Perform PUT request to sever url</span>
 <span class="sd">     * Assert response is DENY</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;PUT&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -600,14 +657,16 @@
 <div class="viewcode-block" id="assert_delete_request_returns_ok_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_delete_request_returns_ok_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_delete_request_returns_ok_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert delete request returns okay status code</span>
 <span class="sd">     * Perform DELETE request to sever url</span>
 <span class="sd">     * Assert response is OK</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;DELETE&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -619,14 +678,16 @@
 <div class="viewcode-block" id="assert_delete_request_returns_success_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_delete_request_returns_success_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_delete_request_returns_success_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert delete request returns okay status code</span>
 <span class="sd">     * Perform DELETE request to sever url</span>
 <span class="sd">     * Assert response is SUCCESS</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;DELETE&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -638,14 +699,16 @@
 <div class="viewcode-block" id="assert_delete_request_returns_not_allowed_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_delete_request_returns_not_allowed_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_delete_request_returns_not_allowed_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert DELETE request returns okay status code</span>
+<span class="sd">    Assert delete request returns okay status code</span>
 <span class="sd">     * Perform GET request to sever url</span>
 <span class="sd">     * Assert response is NOT_ALLOWED</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;DELETE&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -657,14 +720,16 @@
 <div class="viewcode-block" id="assert_delete_request_returns_forbidden_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_delete_request_returns_forbidden_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_delete_request_returns_forbidden_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
+<span class="sd">    Assert delete request returns okay status code</span>
 <span class="sd">     * Perform DELETE request to sever url</span>
 <span class="sd">     * Assert response is FORBIDDEN</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;DELETE&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -676,14 +741,16 @@
 <div class="viewcode-block" id="assert_delete_request_returns_deny_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_delete_request_returns_deny_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_delete_request_returns_deny_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert DELETE request returns okay status code</span>
-<span class="sd">     * Perform GET request to sever url</span>
+<span class="sd">    Assert delete request returns okay status code</span>
+<span class="sd">     * Perform DELETE request to sever url</span>
 <span class="sd">     * Assert response is DENY</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;DELETE&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
@@ -695,20 +762,83 @@
 <div class="viewcode-block" id="assert_delete_request_returns_bad_request_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_delete_request_returns_bad_request_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_delete_request_returns_bad_request_status_code</span><span class="p">(</span>
         <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Assert get request returns okay status code</span>
-<span class="sd">     * Perform PUT request to sever url</span>
+<span class="sd">    Assert delete request returns okay status code</span>
+<span class="sd">     * Perform DELETE request to sever url</span>
 <span class="sd">     * Assert response is DENY</span>
 <span class="sd">     * Assert response content is matches the expected content</span>
 
-<span class="sd">    :param server_url:</span>
-<span class="sd">    :param expected_content:</span>
-<span class="sd">    :param request_kwargs:</span>
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;DELETE&#39;</span><span class="p">,</span>
                                              <span class="n">request_kwargs</span><span class="p">)</span>
     <span class="n">assert_response_bad_request</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">expected_content</span><span class="p">:</span>
-        <span class="n">assert_response_content_equal</span><span class="p">(</span><span class="n">expected_content</span><span class="p">,</span> <span class="n">actual_content</span><span class="p">)</span></div>
+        <span class="n">assert_response_content_equal</span><span class="p">(</span><span class="n">expected_content</span><span class="p">,</span> <span class="n">actual_content</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="assert_options_request_returns_ok_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_options_request_returns_ok_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_options_request_returns_ok_status_code</span><span class="p">(</span>
+        <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content_header_dict</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">expected_content</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assert options request returns okay status code</span>
+<span class="sd">     * Perform OPTIONS request to sever url</span>
+<span class="sd">     * Assert response is OK</span>
+<span class="sd">     * Assert response content is matches the expected content</span>
+
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content: expected content in content</span>
+<span class="sd">        returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param expected_content_header_dict: python dict containing expected</span>
+<span class="sd">        key value pairing in response returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;OPTIONS&#39;</span><span class="p">,</span>
+                                             <span class="n">request_kwargs</span><span class="p">)</span>
+    <span class="n">assert_response_ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">expected_content_header_dict</span><span class="p">:</span>
+        <span class="n">assert_response_headers_contains</span><span class="p">(</span>
+            <span class="n">response</span><span class="p">,</span> <span class="n">expected_content_header_dict</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">expected_content</span><span class="p">:</span>
+        <span class="n">assert_response_content_equal</span><span class="p">(</span><span class="n">expected_content</span><span class="p">,</span> <span class="n">actual_content</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">expected_content_header_dict</span><span class="p">:</span>
+        <span class="n">assert_response_headers_contains</span><span class="p">(</span>
+            <span class="n">response</span><span class="p">,</span> <span class="n">expected_content_header_dict</span>
+        <span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="assert_head_request_returns_ok_status_code"><a class="viewcode-back" href="../../assert_tools.rest.html#assert_tools.rest.assert_head_request_returns_ok_status_code">[docs]</a><span class="k">def</span> <span class="nf">assert_head_request_returns_ok_status_code</span><span class="p">(</span>
+        <span class="n">server_url</span><span class="p">,</span> <span class="n">expected_content_header_dict</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">request_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assert options request returns okay status code</span>
+<span class="sd">     * Perform HEAD request to sever url</span>
+<span class="sd">     * Assert response is OK</span>
+<span class="sd">     * Assert response content is matches the expected content</span>
+
+<span class="sd">    :param server_url: server url</span>
+<span class="sd">    :param expected_content_header_dict: python dict containing expected</span>
+<span class="sd">        key value pairing in response returned :py:class:httplib.HTTP request</span>
+<span class="sd">    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP</span>
+<span class="sd">        request</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span><span class="p">,</span> <span class="n">actual_content</span> <span class="o">=</span> <span class="n">make_api_call</span><span class="p">(</span><span class="n">server_url</span><span class="p">,</span> <span class="s">&#39;HEAD&#39;</span><span class="p">,</span>
+                                             <span class="n">request_kwargs</span><span class="p">)</span>
+    <span class="n">assert_response_ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">expected_content_header_dict</span><span class="p">:</span>
+        <span class="n">assert_response_headers_contains</span><span class="p">(</span>
+            <span class="n">response</span><span class="p">,</span> <span class="n">expected_content_header_dict</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">expected_content_header_dict</span><span class="p">:</span>
+        <span class="n">assert_response_headers_contains</span><span class="p">(</span>
+            <span class="n">response</span><span class="p">,</span> <span class="n">expected_content_header_dict</span>
+        <span class="p">)</span>
+</div>
+<span class="k">del</span> <span class="n">response_json</span>
 </pre></div>
 
           <footer>

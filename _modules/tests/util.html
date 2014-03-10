@@ -69,7 +69,7 @@
         
         
             <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Modules</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../assert_tools.html">assert_tools package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tests.html">tests package</a></li>
 </ul>
@@ -110,8 +110,7 @@
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">body</span><span class="p">:</span>
             <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="mi">123</span><span class="p">:</span> <span class="s">&#39;abc&#39;</span><span class="p">}</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">Response</span><span class="p">({})</span>
-        <span class="n">r</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">httplib2</span><span class="o">.</span><span class="n">Response</span><span class="p">({</span><span class="s">&#39;status&#39;</span><span class="p">:</span> <span class="n">status</span><span class="p">})</span>
         <span class="k">return</span> <span class="n">r</span><span class="p">,</span> <span class="n">body</span>
 
 </div>

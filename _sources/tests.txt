@@ -12,6 +12,14 @@ tests.test_functional module
     :undoc-members:
     :show-inheritance:
 
+tests.test_make_api_call module
+-------------------------------
+
+.. automodule:: tests.test_make_api_call
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 tests.test_make_http_response module
 ------------------------------------
 

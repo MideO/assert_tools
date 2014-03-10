@@ -6,8 +6,13 @@
 Documentation for assert_tools
 ==============================
 A Python Unit/Functional test library, with custom assertions for RESTful API
-verbs (GET, POST, PUT DELETE), all unittest2 assert* converted to pep8 style
+verbs (GET, POST, PUT DELETE) and HTTP methods (OPTIONS and HEAD), all unittest2 assert* converted to pep8 style
 functions and custom assertions for http status code
+
+
+whats new
+=========
+Support for testing reponse header for  HTTP methods (OPTIONS and HEAD)
 
 
 .. toctree::
@@ -34,13 +39,18 @@ Small bottle server to run as SUT: server.py
 
     from bottle import route, run, response, request
 
-
     def do():
         if request.GET.get('code'):
             response.status = int(request.GET.get('code'))
         else:
             response.status = 200
         return request.body
+
+
+    def opts():
+        response.status = 200
+        response.headers['allow'] = "GET,HEAD,POST,PUT,OPTIONS,DELETE"
+        return {'allow': ['GET', 'HEAD', 'POST', 'PUT', 'OPTIONS', 'DELETE']}
 
     @route('/goo', method='GET')
     def response_get(): return do()
@@ -54,8 +64,13 @@ Small bottle server to run as SUT: server.py
     @route('/goo', method='POST')
     def response_post(): return do()
 
-    run(host='localhost', port=8080, debug=True)
+    @route('/goo', method='OPTIONS')
+    def response_options(): return opts()
 
+    @route('/goo', method='HEAD')
+    def response_head(): response.status = 200
+
+    run(host='localhost', port=8080, debug=True)
 
 Test Code: test_server.py
 
