@@ -269,7 +269,7 @@ def assert_get_request_returns_bad_request_status_code(
 def assert_post_request_returns_ok_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert post request returns okay status code
      * Perform POST request to sever url
      * Assert response is POST
      * Assert response content is matches the expected content
@@ -288,7 +288,7 @@ def assert_post_request_returns_ok_status_code(
 def assert_post_request_returns_success_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert post request returns okay status code
      * Perform POST request to sever url
      * Assert response is SUCCESS
      * Assert response content is matches the expected content
@@ -307,7 +307,7 @@ def assert_post_request_returns_success_status_code(
 def assert_post_request_returns_not_allowed_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert post request returns okay status code
      * Perform POST request to sever url
      * Assert response is NOT_ALLOWED
      * Assert response content is matches the expected content
@@ -326,7 +326,7 @@ def assert_post_request_returns_not_allowed_status_code(
 def assert_post_request_returns_forbidden_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert post request returns okay status code
      * Perform POST request to sever url
      * Assert response is FORBIDDEN
      * Assert response content is matches the expected content
@@ -345,7 +345,7 @@ def assert_post_request_returns_forbidden_status_code(
 def assert_post_request_returns_deny_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert post request returns okay status code
      * Perform POST request to sever url
      * Assert response is DENY
      * Assert response content is matches the expected content
@@ -382,7 +382,7 @@ def assert_post_request_returns_bad_request_status_code(
 def assert_put_request_returns_ok_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert put request returns okay status code
      * Perform PUT request to sever url
      * Assert response is OK
      * Assert response content is matches the expected content
@@ -401,7 +401,7 @@ def assert_put_request_returns_ok_status_code(
 def assert_put_request_returns_success_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert put request returns okay status code
      * Perform PUT request to sever url
      * Assert response is SUCCESS
      * Assert response content is matches the expected content
@@ -420,8 +420,8 @@ def assert_put_request_returns_success_status_code(
 def assert_put_request_returns_not_allowed_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert PUT request returns okay status code
-     * Perform GET request to sever url
+    Assert put request returns okay status code
+     * Perform PUT request to sever url
      * Assert response is NOT_ALLOWED
      * Assert response content is matches the expected content
 
@@ -439,7 +439,7 @@ def assert_put_request_returns_not_allowed_status_code(
 def assert_put_request_returns_forbidden_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert put request returns okay status code
      * Perform PUT request to sever url
      * Assert response is FORBIDDEN
      * Assert response content is matches the expected content
@@ -458,8 +458,8 @@ def assert_put_request_returns_forbidden_status_code(
 def assert_put_request_returns_deny_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
-     * Perform GET request to sever url
+    Assert put request returns okay status code
+     * Perform PUT request to sever url
      * Assert response is DENY
      * Assert response content is matches the expected content
 
@@ -477,7 +477,7 @@ def assert_put_request_returns_deny_status_code(
 def assert_put_request_returns_bad_request_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert put request returns okay status code
      * Perform PUT request to sever url
      * Assert response is DENY
      * Assert response content is matches the expected content
@@ -496,7 +496,7 @@ def assert_put_request_returns_bad_request_status_code(
 def assert_delete_request_returns_ok_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert delete request returns okay status code
      * Perform DELETE request to sever url
      * Assert response is OK
      * Assert response content is matches the expected content
@@ -515,7 +515,7 @@ def assert_delete_request_returns_ok_status_code(
 def assert_delete_request_returns_success_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert delete request returns okay status code
      * Perform DELETE request to sever url
      * Assert response is SUCCESS
      * Assert response content is matches the expected content
@@ -534,7 +534,7 @@ def assert_delete_request_returns_success_status_code(
 def assert_delete_request_returns_not_allowed_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert DELETE request returns okay status code
+    Assert delete request returns okay status code
      * Perform GET request to sever url
      * Assert response is NOT_ALLOWED
      * Assert response content is matches the expected content
@@ -553,7 +553,7 @@ def assert_delete_request_returns_not_allowed_status_code(
 def assert_delete_request_returns_forbidden_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
+    Assert delete request returns okay status code
      * Perform DELETE request to sever url
      * Assert response is FORBIDDEN
      * Assert response content is matches the expected content
@@ -572,8 +572,8 @@ def assert_delete_request_returns_forbidden_status_code(
 def assert_delete_request_returns_deny_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert DELETE request returns okay status code
-     * Perform GET request to sever url
+    Assert delete request returns okay status code
+     * Perform DELETE request to sever url
      * Assert response is DENY
      * Assert response content is matches the expected content
 
@@ -591,8 +591,8 @@ def assert_delete_request_returns_deny_status_code(
 def assert_delete_request_returns_bad_request_status_code(
         server_url, expected_content=None, request_kwargs=None):
     """
-    Assert get request returns okay status code
-     * Perform PUT request to sever url
+    Assert delete request returns okay status code
+     * Perform DELETE request to sever url
      * Assert response is DENY
      * Assert response content is matches the expected content
 
@@ -605,7 +605,5 @@ def assert_delete_request_returns_bad_request_status_code(
     assert_response_bad_request(response)
     if expected_content:
         assert_response_content_equal(expected_content, actual_content)
-
-
 
 del response_json
