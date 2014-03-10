@@ -3,8 +3,8 @@ from assert_tools.rest import (
     assert_response_equal,
     UnsupportedResponseCode,
     UnsupportedObject,
-    assert_response_content_equal
-)
+    assert_response_content_equal,
+    assert_response_headers_contains)
 from assert_tools.rest.response_json import responses
 from util import MockHttpResponse
 
@@ -19,6 +19,34 @@ def test_assert_response_equal():
     mock_http_response = MockHttpResponse()
     data_dict = {'status': 200, 'body': {234: 'bcd'}}
     assert_response_equal(mock_http_response(**data_dict)[0], 'OK')
+
+
+def test_assert_response_headers_contains():
+    """
+    Tests :py:func:`assert_tools.rest.assert_response_equal`.
+
+    Tests that :py:func:`assert_tools.rest.assert_response_headers_contains`
+    passes when given `httplib2 Response`
+    """
+    mock_http_response = MockHttpResponse()
+    data_dict = {'status': 200, 'body': {234: 'bcd'}}
+    assert_response_headers_contains(
+        mock_http_response(**data_dict)[0], {'status': 200})
+
+
+def test_assert_response_headers_unsupported_object():
+    """
+    Tests :py:func:`assert_tools.rest.assert_response_equal`.
+
+    Tests that :py:func:`assert_tools.rest.assert_response_headers_contains`
+    passes when given `httplib2 Response`
+    """
+    mock_http_response = MockHttpResponse()
+    data_dict = {'status': 200, 'body': {234: 'bcd'}}
+    assert_raises(
+        UnsupportedObject, assert_response_headers_contains,
+        *(mock_http_response(**data_dict)[0], ['status', 200])
+    )
 
 
 def test_assert_response_content_equal():

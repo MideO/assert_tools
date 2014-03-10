@@ -6,8 +6,7 @@ class MockHttpResponse():
     def __call__(self, status=200, body=None):
         if not body:
             body = {123: 'abc'}
-        r = httplib2.Response({})
-        r.status = status
+        r = httplib2.Response({'status': status})
         return r, body
 
 

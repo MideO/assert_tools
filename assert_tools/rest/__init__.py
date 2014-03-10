@@ -31,7 +31,7 @@ def as_http_response(response, content=None):
     if isinstance(response, httplib2.Response):
         return response, content
     elif isinstance(response, requests.Response):
-        r = httplib2.Response({})
+        r = httplib2.Response({'status': response.status_code})
         r.status = response.status_code
         return r, response.content
 
@@ -55,7 +55,7 @@ def dict_as_http_response(data_dict):
         expected_keys = ['status', 'body']
         keys = data_dict.keys()
         if any(i in keys for i in expected_keys):
-            r = httplib2.Response({})
+            r = httplib2.Response({'status': 200})
             r.status = data_dict.get('status', 200)
             body = data_dict.get('body', '')
             return r, body
@@ -80,6 +80,29 @@ def assert_response_equal(actual_response, expected_response):
     expected_response, _ = dict_as_http_response(expected_data_dict)
     actual_response, _ = as_http_response(actual_response)
     assert_equal(expected_response.status, actual_response.status)
+
+
+def assert_response_headers_contains(
+        actual_response, expected_content_header_dict):
+    """Assert Response header contains a items in expected_header_content.
+    :param actual_response: Actual Response
+    :param expected_content_header_dict: expected content in response header
+    """
+    if not isinstance(expected_content_header_dict, dict):
+        raise UnsupportedObject(
+            'Python dictionary expected for expected_header_content ')
+    actual_response, _ = as_http_response(actual_response)
+    assert_equal(
+        [i for i in expected_content_header_dict.keys() if
+         i in actual_response.keys()],
+        expected_content_header_dict.keys(),
+        "Items not found in response header"
+    )
+    for i in expected_content_header_dict.keys():
+        assert_equal(
+            expected_content_header_dict.get(i), actual_response.get(i),
+            "Unexpected header item value returned"
+        )
 
 
 def assert_response_content_equal(
@@ -138,7 +161,7 @@ def make_api_call(url, method, kwargs):
     Perform the call allowed  by httplib2 ``method``
     :param url: Rest API url
 
-    :param method: ::py:class:httplib.HTTP request method: GET, POST, PUT,
+    :param method: :py:class:httplib.HTTP request method: GET, POST, PUT,
         DELETE
     :param kwargs: dictionary of supported :py:class:httplib2.Http() request
          body, headers, redirections, connection_type
@@ -184,9 +207,11 @@ def assert_get_request_returns_success_status_code(
      * Assert response is SUCCESS
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'GET', request_kwargs)
     assert_response_success(response)
@@ -202,9 +227,11 @@ def assert_get_request_returns_not_allowed_status_code(
      * Assert response is NOT_ALLOWED
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'GET', request_kwargs)
     assert_response_not_allowed(response)
@@ -220,9 +247,11 @@ def assert_get_request_returns_forbidden_status_code(
      * Assert response is FORBIDDEN
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'GET', request_kwargs)
     assert_response_forbidden(response)
@@ -238,9 +267,11 @@ def assert_get_request_returns_deny_status_code(
      * Assert response is DENY
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'GET', request_kwargs)
     assert_response_deny(response)
@@ -256,9 +287,11 @@ def assert_get_request_returns_bad_request_status_code(
     * Assert response is DENY
     * Assert response content is matches the expected content
 
-    :param server_url: REST api uri
-    :param expected_content: expected content from REST api
-    :param request_kwargs: kwargs for :py:class http.HTTP
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'GET', request_kwargs)
     assert_response_bad_request(response)
@@ -274,9 +307,11 @@ def assert_post_request_returns_ok_status_code(
      * Assert response is POST
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'POST',
                                              request_kwargs)
@@ -293,9 +328,11 @@ def assert_post_request_returns_success_status_code(
      * Assert response is SUCCESS
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'POST',
                                              request_kwargs)
@@ -312,9 +349,11 @@ def assert_post_request_returns_not_allowed_status_code(
      * Assert response is NOT_ALLOWED
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'POST',
                                              request_kwargs)
@@ -331,9 +370,11 @@ def assert_post_request_returns_forbidden_status_code(
      * Assert response is FORBIDDEN
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'POST',
                                              request_kwargs)
@@ -350,9 +391,11 @@ def assert_post_request_returns_deny_status_code(
      * Assert response is DENY
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'GET', request_kwargs)
     assert_response_deny(response)
@@ -368,9 +411,11 @@ def assert_post_request_returns_bad_request_status_code(
      * Assert response is DENY
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'POST',
                                              request_kwargs)
@@ -387,9 +432,11 @@ def assert_put_request_returns_ok_status_code(
      * Assert response is OK
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'PUT',
                                              request_kwargs)
@@ -406,9 +453,11 @@ def assert_put_request_returns_success_status_code(
      * Assert response is SUCCESS
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'PUT',
                                              request_kwargs)
@@ -425,9 +474,11 @@ def assert_put_request_returns_not_allowed_status_code(
      * Assert response is NOT_ALLOWED
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'PUT',
                                              request_kwargs)
@@ -444,9 +495,11 @@ def assert_put_request_returns_forbidden_status_code(
      * Assert response is FORBIDDEN
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'PUT',
                                              request_kwargs)
@@ -463,9 +516,11 @@ def assert_put_request_returns_deny_status_code(
      * Assert response is DENY
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'PUT',
                                              request_kwargs)
@@ -482,9 +537,11 @@ def assert_put_request_returns_bad_request_status_code(
      * Assert response is DENY
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'PUT',
                                              request_kwargs)
@@ -501,9 +558,11 @@ def assert_delete_request_returns_ok_status_code(
      * Assert response is OK
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'DELETE',
                                              request_kwargs)
@@ -520,9 +579,11 @@ def assert_delete_request_returns_success_status_code(
      * Assert response is SUCCESS
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'DELETE',
                                              request_kwargs)
@@ -539,9 +600,11 @@ def assert_delete_request_returns_not_allowed_status_code(
      * Assert response is NOT_ALLOWED
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'DELETE',
                                              request_kwargs)
@@ -558,9 +621,11 @@ def assert_delete_request_returns_forbidden_status_code(
      * Assert response is FORBIDDEN
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'DELETE',
                                              request_kwargs)
@@ -577,9 +642,11 @@ def assert_delete_request_returns_deny_status_code(
      * Assert response is DENY
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'DELETE',
                                              request_kwargs)
@@ -596,14 +663,75 @@ def assert_delete_request_returns_bad_request_status_code(
      * Assert response is DENY
      * Assert response content is matches the expected content
 
-    :param server_url:
-    :param expected_content:
-    :param request_kwargs:
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
     """
     response, actual_content = make_api_call(server_url, 'DELETE',
                                              request_kwargs)
     assert_response_bad_request(response)
     if expected_content:
         assert_response_content_equal(expected_content, actual_content)
+
+
+def assert_options_request_returns_ok_status_code(
+        server_url, expected_content_header_dict=None,
+        expected_content=None, request_kwargs=None):
+    """
+    Assert options request returns okay status code
+     * Perform OPTIONS request to sever url
+     * Assert response is OK
+     * Assert response content is matches the expected content
+
+    :param server_url: server url
+    :param expected_content: expected content in content
+        returned :py:class:httplib.HTTP request
+    :param expected_content_header_dict: python dict containing expected
+        key value pairing in response returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
+    """
+    response, actual_content = make_api_call(server_url, 'OPTIONS',
+                                             request_kwargs)
+    assert_response_ok(response)
+    if expected_content_header_dict:
+        assert_response_headers_contains(
+            response, expected_content_header_dict
+        )
+    if expected_content:
+        assert_response_content_equal(expected_content, actual_content)
+    if expected_content_header_dict:
+        assert_response_headers_contains(
+            response, expected_content_header_dict
+        )
+
+
+def assert_head_request_returns_ok_status_code(
+        server_url, expected_content_header_dict=None, request_kwargs=None):
+    """
+    Assert options request returns okay status code
+     * Perform HEAD request to sever url
+     * Assert response is OK
+     * Assert response content is matches the expected content
+
+    :param server_url: server url
+    :param expected_content_header_dict: python dict containing expected
+        key value pairing in response returned :py:class:httplib.HTTP request
+    :param request_kwargs: keyword arguments for :py:class:httplib.HTTP
+        request
+    """
+    response, actual_content = make_api_call(server_url, 'HEAD',
+                                             request_kwargs)
+    assert_response_ok(response)
+    if expected_content_header_dict:
+        assert_response_headers_contains(
+            response, expected_content_header_dict
+        )
+    if expected_content_header_dict:
+        assert_response_headers_contains(
+            response, expected_content_header_dict
+        )
 
 del response_json

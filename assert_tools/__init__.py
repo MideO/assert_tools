@@ -20,7 +20,7 @@ class NoOp(unittest2.TestCase):
 no_op = NoOp('no_op')
 
 _asserts = [_ for _ in dir(no_op) if
-           _.startswith('assert') and not '_' in _]
+            _.startswith('assert') and not '_' in _]
 for _attrib in _asserts:
     vars()[pep8(_attrib)] = getattr(no_op, _attrib)
     del _attrib
