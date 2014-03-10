@@ -4,7 +4,7 @@ setup(
     name='assert_tools',
     url='http://mideo.github.io/assert_tools/',
     description='A Python Unit/Functional test library.',
-    version='0.0.1',
+    version='0.0.2',
     author='Mide Ojikutu',
     author_email='mide.ojikutu@gmail.com',
     packages=find_packages(),
